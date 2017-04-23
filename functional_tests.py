@@ -1,6 +1,6 @@
 from selenium import webdriver
 import unittest
-
+import time
 class NewVisitorTest(unittest.TestCase): 
 
     def setUp(self): 
@@ -14,15 +14,31 @@ class NewVisitorTest(unittest.TestCase):
         # เขาจึงเข้าไปยัง url home page
         self.browser.get('http://localhost:8000')
 
-        # เขาเห็น title ของ page หน้าแรก
-        self.assertIn('Welcome to Django', self.browser.title)  #5
+        # เขาเห็น title ของ page หน้าแรก และ header ที่เขียนว่า select food
+        self.assertIn('healhty site', self.browser.title)  #5
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('select food', header_text)
 
 	# เขาพบตัวเลือกให้เลือกรายชื่อของอาหาร
-
+        time.sleep(2)
+        select = self.browser.find_element_by_id('id_new_food')
         # เขาจึงเลือกอาหารที่พึ่งกินไปเมื่อเที่ยง ซึ่งเป็นมื้อแรกของวันของเขา คือ ข้าวกระเพราไก่กรอบไข่ดาว
-	
-	# เขาพบรายชื่ออาหารที่เลือก แสดงขึ้นมา
+        time.sleep(2)
+        select.send_keys('ข้าวผัด')
+        # เขาทานไป 1 จาน
+        time.sleep(2)
+        numbox = self.browser.find_element_by_name('num_food')
+        self.assertEqual(
+                numbox.get_attribute('placeholder'),
+                'number'
+        )
+        numbox.send_keys('1')
 
+        # กด submit เลือก
+        submit = self.browser.find_element_by_name("submit_select").click()
+
+	# เขาพบรายชื่ออาหารที่เลือก แสดงขึ้นมา
+        time.sleep(2)
         self.fail('Finish the test!')  #6
 
     
