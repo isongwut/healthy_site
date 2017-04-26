@@ -1031,3 +1031,39 @@ Hit MOZ_CRASH(MsgDropped) at /build/firefox-bLMGaO/firefox-52.0.2+build1/ipc/glu
 
 ###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
 
+1492971112354	geckodriver	INFO	Listening on 127.0.0.1:50700
+1492971113528	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.UGjPR03Gia1Y
+1492971113529	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1492971113568	geckodriver::marionette	INFO	Connecting to Marionette on localhost:40019
+1492971119566	Marionette	INFO	Listening on port 40019
+1492971121497	Marionette	WARN	TLS certificate errors will be ignored for this session
+1492971134331	Marionette	INFO	New connections will no longer be accepted
+[Child 9590] ###!!! ABORT: Aborting on channel error.: file /build/firefox-bLMGaO/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
+[Child 9590] ###!!! ABORT: Aborting on channel error.: file /build/firefox-bLMGaO/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
+
+1492999385727	geckodriver	INFO	Listening on 127.0.0.1:58219
+1492999386901	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.IfXkJbOkXMDz
+1492999386902	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1492999386911	geckodriver::marionette	INFO	Connecting to Marionette on localhost:40383
+1492999389560	Marionette	INFO	Listening on port 40383
+1492999391211	Marionette	WARN	TLS certificate errors will be ignored for this session
+1492999404044	Marionette	INFO	New connections will no longer be accepted
+
+###!!! [Child][MessageChannel] Error: (msgtype=0xE40003,name=PTexture::Msg_Destroy) Channel error: cannot send/recv
+
+[Child 2886] ###!!! ABORT: Aborting on channel error.: file /build/firefox-bLMGaO/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
+
+[Child 2886] ###!!! ABORT: Aborting on channel error.: file /build/firefox-bLMGaO/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3E0003,name=PCompositable::Msg_Destroy) Channel error: cannot send/recv
+

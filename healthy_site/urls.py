@@ -20,6 +20,5 @@ from healthy import views
 
 urlpatterns = [
     url(r'^$', views.home_page, name='home'),
-    url(r'^selectFood$', views.save_select_food, name='save_select_food'),
     url(r'^admin/', admin.site.urls),
 ]

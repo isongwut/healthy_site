@@ -8,12 +8,11 @@
         {% csrf_token %}
          	<select name="food_text" id = id_new_food>
                 	<option selected disabled>Select here</option>
-  			<option value='กระเพราไก่'>กระเพราไก่</option>
-  			<option value='คะน้าหมูกรอบ'>คะน้าหมูกรอบ</option>
-  			<option value='ข้าวผัด'>ข้าวผัด</option>
-  			<option value='ไข่เจียวหมูสับ'>ไข่เจียวหมูสับ</option>
+                    {% for name_food in name_foods %}
+  			<option value='{{name_food.id}}'>{{name_food.name}}</option>
+                    {% endfor %}
 	 	</select> 
-        	:<input type = "number" min="0" name="num_food"  placeholder="number" /> Bowl or plate
+        	:<input type = "number" min="1" value= "1" name="num_food"  placeholder="number" /> Bowl or plate
         	<br>
         	<input type = "submit" name="submit_select" value="select" />
 	</form>
