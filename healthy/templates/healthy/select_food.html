@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>healhty site</title>
+    </head>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+    <body>
+        <h1>select food</h1>
+        <form action="{% url 'healthy:select_food'%}" method="post">
+    	{% csrf_token %}
+    		<select name='food' id = id_new_food>
+                	<option selected disabled>Select here</option>
+                    {% for food in foods %}
+  			<option value='{{food.id}}'>{{food.name}}</option>
+                    {% endfor %}
+		 </select>
+    		 :<input type = "number" name="number_food" min="1" value= "1"   placeholder="number" /> Bowl or plate
+    		 <br>
+    	 	 <input type="submit" value="Add" />
+	</form>
+	<br>
+	<b><font size="5" >Food table</font></b>
+	<table id="id_food_table" style="width:40%">
+            <tr>
+                <td><center>Name</td>
+                <td><center>Number(Bowl or plate)</td>
+                <td><center>calories total</td></center>
+            </tr>    
+            {% for food in food_list %} 
+            <tr>
+                <td><center>{{food.name}}</td>
+                <td><center>{{food.number}}</td>
+                <td><center>{{food.calories}}</td></center>
+            </tr>   
+            {% endfor %} 
+            <tr>
+                <td><center> </td>
+                <td><center> </td>
+                <td><center>{{calories_total}}</td></center>
+            </tr>              
+        </table>
+         <a href="{% url 'healthy:select_food'%}">clear</a> 
+    </body>
+</html>
