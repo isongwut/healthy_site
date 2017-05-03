@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>healhty site</title>
+    </head>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+    <body>
+        <a href="{% url 'healthy:select_food'%}"> <<< Clear & Go back select menu </a> 
+
+        <h1>bmr calculator</h1>
+        <form action="{% url 'healthy:cal_bmr'%}" method="post">
+        {% csrf_token %}
+         	Sex : <input type = "radio" name="sex" value = "Male"/> male
+         	<input type = "radio" name="sex" value = "Female"/> female <br>
+         	Height(cm) : <input type = "text" name="height" /><br>
+         	Weight(km) :<input type = "text" name="weight" /><br>
+         	Age :<input type = "text" name="age" /><br>
+                <input type="submit" value="calculate" /><br>
+        <br>
+        </form>
+
+
+    </body>
+</html>

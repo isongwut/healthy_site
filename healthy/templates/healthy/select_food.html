@@ -41,17 +41,13 @@ table, th, td {
                 <td><center>{{calories_total}}</td></center>
             </tr>              
         </table>
-         <a href="{% url 'healthy:select_food'%}">clear</a> 
+         <a href="{% url 'healthy:select_food'%}">Clear</a><br><br>
 
-        <h1>bmr calculator</h1>
-        <form action="{% url 'healthy:cal_bmr'%}" method="post">
+        
+        <form action="{% url 'healthy:bmr'%}" method="post">
         {% csrf_token %}
-         	Sex : <input type = "radio" name="sex" value = "male"/> male
-         	<input type = "radio" name="sex" value = "female"/> female <br>
-         	Height(cm) : <input type = "text" name="height" /><br>
-         	Weight(km) :<input type = "text" name="weight" /><br>
-         	Age :<input type = "text" name="age" /><br>
-                <input type="submit" value="calculate" /><br>
+                <font size="4">Calculate  bmr value for excess calories >>>>> </font>
+                <input type="submit" value="Go to calculate" /><br>
         <br>
         </form>
 
