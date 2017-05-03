@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
-from healthy.models import Food,FoodList
+from healthy.models import Food,FoodList,Exercise
+
 
 def home_page(request):
     foods = Food.objects.all()
     return render(request, 'healthy/home.html', {
         'foods' : foods,
     })
-
 
 def select_food(request):
     foods = Food.objects.all()
@@ -24,14 +24,53 @@ def select_food(request):
     food_texts = select.name
     number_food = request.POST.get('number_food')
     calories = select.calories * int(number_food)
-    FoodList.objects.create(name = food_texts,number = number_food, calories = calories )
-    food_list = FoodList.objects.all()
-    for i in FoodList.objects.all():
-        calories_total += i.calories
-    contex = {'foods' : foods, 'food_list' : food_list, 'calories_total' : calories_total}
+    FoodList.objects.create(name = food_texts,number_per_menu = number_food , calories_per_menu = calories)
+    
+    # calories total
+    calories_total = sum_calories(FoodList.objects.all())
+
+    contex = {'foods' : foods, 'foodList_select' : FoodList.objects.all(), 'calories_total' : calories_total}
     return render(request, 'healthy/select_food.html', contex)
 
+def cal_bmr(request):
+    bmr = 0
+    calories_select_total = 0
+    excess_calories = 0
+    foods = Food.objects.all()
 
+    # calories total
+    calories_select_total = sum_calories(FoodList.objects.all())
+
+    # cal bmr
+    sex = request.POST.get('sex')
+    height = int(request.POST.get('height'))
+    weight = int(request.POST.get('weight'))
+    age = int(request.POST.get('age'))
+    if sex == 'male' :
+        bmr = int(66+((13.7*weight)+(5*height)-(6.8*age)))
+    else:
+        bmr = int(665+((9.6*weight)+(1.8*height)-(4.7*age)))
+
+    # excess_calories
+    excess_calories = calories_select_total-bmr
+
+    exercise = Exercise.objects.all().get(pk = 1)
+    contex = {'foods' : foods, 'foodList_select' : FoodList.objects.all(), 'calories_total' : calories_select_total, 'bmr_value' : bmr, 'excess_calories' : excess_calories, 'exercise' : exercise}
+    return render(request, 'healthy/exercise.html', contex)
+
+def burn_calories(request,foods,foodList_select,calories_select_total,bmr,excess_calories):
+    exercise = Exercise.objects.all().get(pk = 1)
+    contex = {'foods' : foods, 'foodList_select' : foodList_select, 'calories_total' : calories_select_total, 'bmr_value' : bmr, 'excess_calories' : excess_calories, 'exercise' : exercise}
+    return render(request, 'healthy/exercise.html', contex)
+
+def sum_calories(foodList):
+    calories_total = 0
+    for food in foodList:
+        calories_total += food.calories_per_menu
+    return calories_total     
+
+
+    
     
 
     

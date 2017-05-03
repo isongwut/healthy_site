@@ -52,9 +52,21 @@ table, th, td {
          	Weight(km) :<input type = "text" name="weight" /><br>
          	Age :<input type = "text" name="age" /><br>
                 <input type="submit" value="calculate" /><br>
+         	<b>BMR : </b><font color="red">{{bmr_value}}</font> kcal<br>
+                <b>Excess Calories : </b><font color="red">{{excess_calories}}</font> kcal
         <br>
         </form>
-
+       
+        <h1>Exercise burn calories</h1>
+        <h4>Activity : {{exercise.types}}</h4>
+        <form oninput="x.value={{excess_calories}}-parseInt(a.value)" > 
+        time
+  	<input type="range" id="a" name="a" value="0" min = "0" max = "{{excess_calories}}"  oninput="a1.value=parseInt(a.value)/{{exercise.burn}}">
+        = 
+  	<output name="a1" ></output> min
+  	<br><br>
+        Excess Calories : <output name="x" ></output> kcal
+	</form>
 
     </body>
 </html>

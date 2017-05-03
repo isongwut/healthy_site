@@ -10,11 +10,13 @@ class Food(models.Model):
 
 class FoodList(models.Model):
     name = models.CharField(max_length = 200)
-    number = models.IntegerField()
-    calories = models.IntegerField()
+    number_per_menu = models.IntegerField()
+    calories_per_menu = models.IntegerField()
+
+class Exercise(models.Model):
+    types = models.CharField(max_length = 200)
+    burn = models.IntegerField()
     
     def __str__(self):
-        return self.name
-
-#exercise
+        return self.types
 
