@@ -13,7 +13,9 @@ urlpatterns = [
 
     url(r'^cal_bmr$', views.cal_bmr, name='cal_bmr'),
     
-    url(r'^cal_bmr/-(?P<excess_calories>-?[0-9]+)/$', views.burn_calories, name='burn_calories'),
+    url(r'^cal_bmr/(?P<excess_calories>-?[0-9]+)/$', views.exercise, name='exercise'),
+
+    url(r'^cal_bmr/(?P<excess_calories>-?[0-9]+)/burn/$', views.burn_calories, name='burn_calories'),
 
 
 ]

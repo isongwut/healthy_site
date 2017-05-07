@@ -23,13 +23,13 @@ table, th, td {
 	</form>
         <br><br>
         Activity : <font color="red">{{exercise_select.types}}</font><br><br>
-        <form oninput="x.value={{excess_calories}}-parseInt(a.value)" > 
+        <form oninput="cal.value={{excess_calories}}-parseInt(volume.value)" > 
         time
-  	<input type="range" id="a" name="a" value="0" min = "0" max = "{{excess_calories}}"  oninput="a1.value=parseInt(a.value)/{{exercise_select.burn}}">
+  	<input type="range" id="volume" name="volume" value="0" min = "0" max = "{{excess_calories}}"  oninput="time.value=parseInt(volume.value/{{exercise_select.burn}})">
         = 
-  	<output name="a1" ></output> min
+  	<output name="time" ></output> min
   	<br><br>
-        Excess Calories : <font color="red"><output name="x" ></output></font> kcal
+        Excess Calories : <font color="red"><output name="cal" ></output></font> kcal
 	</form><br>
         <a href="{% url 'healthy:select_food'%}"> <<< Clear & Go back select menu </a> 
     </body>

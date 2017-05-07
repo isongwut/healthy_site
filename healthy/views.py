@@ -36,6 +36,9 @@ def select_food(request):
 def bmr(request):
     return render(request, 'healthy/cal_bmr.html')
 
+def exercise(request,excess_calories):
+    contex = {'exercises' : Exercise.objects.all(),'excess_calories' : excess_calories}
+    return render(request, 'healthy/exercise.html',contex)
 
 def cal_bmr(request):
     bmr = 0
@@ -61,12 +64,11 @@ def cal_bmr(request):
     excess_calories = calories_select_total-bmr
 
     contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories, 'exercises' : exercises}
-    return render(request, 'healthy/select_exercise.html', contex)
+    return render(request, 'healthy/detail_bmr.html', contex)
 
 def burn_calories(request,excess_calories):
     exercises = Exercise.objects.all()
     select = exercises.get(pk = request.POST.get('exercise'))
-
     contex = { 'exercises' : exercises,'exercise_select' : select, 'excess_calories' : excess_calories}
     return render(request, 'healthy/exercise.html', contex)
 
