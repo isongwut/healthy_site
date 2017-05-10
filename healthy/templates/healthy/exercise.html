@@ -1,4 +1,8 @@
+
+{% load static %}
+
 <html>
+<link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" />
     <head>
         <title>healhty site</title>
     </head>
@@ -9,6 +13,12 @@ table, th, td {
 </style>
     <body>
 
+<div class="header"><center><font size = "5" ><h1> HEALTHY </h1></center></font></div>  
+<ul><b>
+  <li><a href="{% url 'healthy:home_page'%}">Home</a></li>
+  <li><a href="{% url 'healthy:about'%}">About</a></li>
+</ul></b>
+<div class="exercise">
         <h1>Exercise burn calories</h1>
         <form action="{% url 'healthy:burn_calories' excess_calories %}" method="post">
     	{% csrf_token %}
@@ -19,7 +29,7 @@ table, th, td {
   			<option value='{{exercise.id}}'>{{exercise.types}}</option>
                     {% endfor %}
 		 </select>
-    	 	 <input type="submit" value="select" />
+    	 	 <input class="button" type="submit" name = "submit_select_exercise" value="select" />
 	</form>
         <br><br>
         Activity : <font color="red">{{exercise_select.types}}</font><br><br>
@@ -27,10 +37,14 @@ table, th, td {
         time
   	<input type="range" id="volume" name="volume" value="0" min = "0" max = "{{excess_calories}}"  oninput="time.value=parseInt(volume.value/{{exercise_select.burn}})">
         = 
-  	<output name="time" ></output> min
+  	<output name="time" id = 'id_time' ></output> min
   	<br><br>
-        Excess Calories : <font color="red"><output name="cal" ></output></font> kcal
+        Excess Calories : <font color="red"><output name="cal" id = 'id_exc_cal'></output></font> kcal
 	</form><br>
-        <a href="{% url 'healthy:select_food'%}"> <<< Clear & Go back select menu </a> 
+</div>
+ <div class="link_exer_page">
+        <a href="{% url 'healthy:select_menu_page'%}">  Go back select menu </a><br> 
+        <a href="{% url 'healthy:select_food'%}"> Clear & Go back select menu </a> 
+</div> 
     </body>
 </html>

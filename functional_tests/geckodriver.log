@@ -1,0 +1,15 @@
+1494148908269	geckodriver	INFO	Listening on 127.0.0.1:50816
+1494148909342	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.J2TkaTQ7AQd1
+1494148909343	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1494148909348	geckodriver::marionette	INFO	Connecting to Marionette on localhost:37030
+1494148910586	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1494148910589	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1494148910614	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1494148910616	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1494148912099	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1494148912100	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1494148912109	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1494148912110	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1494148915426	Marionette	INFO	Listening on port 37030
+1494148915587	Marionette	WARN	TLS certificate errors will be ignored for this session
+1494148920707	Marionette	INFO	New connections will no longer be accepted

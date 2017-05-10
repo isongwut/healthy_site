@@ -1,24 +1,30 @@
+
+{% load static %}
+
 <html>
+<link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" />
     <head>
         <title>healhty site</title>
     </head>
     <body>
-        <h1>select food</h1>
-        <form action="{% url 'healthy:select_food'%}" method="post">
+<div class="header"><center><font size = "5" ><h1> HEALTHY </h1></center></font></div>  
+<ul><b>
+  <li><a href="{% url 'healthy:home_page'%}">Home</a></li>
+  <li><a href="{% url 'healthy:about'%}">About</a></li>
+</ul></b>
+<br><br>
+<center>
+<img src="{% static "healthy/3.jpg" %}" alt="My image"/><br><br>
+
+<font color = "#660066" size="4"><b> We will use the calories from the menu. For calculating the burn </b></font>
+        
+        <br><br>
+        <form action="{% url 'healthy:select_menu_page'%}" method="post"><br>
     	{% csrf_token %}
-    		<select name='food' id = id_new_food>
-                	<option selected disabled>Select here</option>
-                    {% for food in foods %}
-  			<option value='{{food.id}}'>{{food.name}}</option>
-                    {% endfor %}
-		 </select>
-    		 :<input type = "number" name="number_food" min="1" value= "1"   placeholder="number" /> Bowl or plate
-    		 <br>
-   		 <input type="submit" value="select" />
+   		 <input class="button_select_menu" type="submit" name="submit_select" value="SELECT MENU" />
 	</form>
-         
-        <table id="id_food_table">
-            <tr><td>{{new_food_text}}</td></tr>
-        </table>
+
+        </center>
+
     </body>
 </html>

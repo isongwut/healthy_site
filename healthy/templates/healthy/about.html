@@ -1,0 +1,29 @@
+
+{% load static %}
+
+<html>
+<link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" />
+<body>
+
+<div class="header"><center><font size = "5" ><h1> HEALTHY </h1></center></font></div>  
+<ul><b>
+  <li><a href="{% url 'healthy:home_page'%}">Home</a></li>
+  <li><a href="{% url 'healthy:about'%}">About</a></li>
+</ul></b>
+
+<br><br>
+
+<div class="about">
+<center><h1 >About</h1>
+<font size = "5">
+เราเล็งเห็นเรื่องสุขภาพของผู้คนด้านการออกกำลังกาย อาหารที่รับประทานในแต่ละวัน<br>
+จึงทำเว็บแอพพลิเคชั่นนี้ขึ้นมาเพื่อเลือกรูปแบบการออกกำลังกายที่สอกคล้องกับอาหารที่รับประทานไป<br>
+ในแต่ละวัน ซึ่งอาหารแต่ละประเภทจะมีแคลอรี่ต่างกัน <br>
+ในเมื่อคนเราไม่สามารถรับประทานอาหารให้พอดีกับพลังงานที่ร่างกายต้องการ<br>
+จึงจำเป็นต้องทำการเผาผลาญออก เพื่อสุขภาพที่ดีของผู้คน<br>
+โดยเว็บแอพพลิเคชั่นนี้ ถูกพัฒนาโดยใช้ Web framework เป็น Django <br>
+และ Selenium เป็นเครื่องมือในการทดสอบเว็บแอพพลิเคชั่น<br>
+</center></font>
+</div>
+</body>
+</html>

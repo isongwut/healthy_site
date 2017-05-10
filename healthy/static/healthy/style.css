@@ -1,0 +1,160 @@
+a { 
+        color: #993333;
+        text-decoration:none;
+        font-weight:bold;
+} 
+a.less { 
+	color: inherit; 
+} 
+
+/* background */
+body {
+    background: white url("images/1.jpg") no-repeat ;
+    background-size: cover;
+}
+
+
+/* menubar */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #339966;
+}
+
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #333;
+}
+
+
+.about {
+       
+        margin: 20px;
+	background: white url("images/9.png") no-repeat ;
+        background-size: cover;
+}
+
+
+/* select */
+.select {
+        float: left;
+        margin: 20px;
+	background: #ccffcc;
+        
+}
+/* menu_select */
+.menu_select_table {
+        float: left;
+        margin: 20px;
+	background: #ccffcc;
+}
+.goto_bmr {
+        text-align: center;
+        float: right;
+	
+}
+
+
+.link_bmr_page,.link_exer_page {
+        float: right;
+        margin: 20px;
+}
+
+
+.bmr {
+        position: relative;
+        left: 400px;
+        margin: 20px;
+	background: #ccffcc;
+}
+.detail_bmr {
+        position: relative;
+        left: 400px;
+        margin: 20px;
+	background: #ccffcc;
+}
+.goto_exer {
+        text-align: center;
+
+	
+}
+.exercise {
+        position: relative;
+        left: 400px;
+        margin: 20px;
+	background: #ccffcc;
+	
+}
+/* table */
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+th, td {
+    border: 1px solid black;
+}
+
+/* button_select_menu */
+.button_select_menu {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button_select_menu:hover {background-color: #3e8e41}
+
+.button_select_menu:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+/* button */
+.button {
+  display: inline-block;
+  padding: 6px 25px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+

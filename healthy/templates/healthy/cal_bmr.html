@@ -1,26 +1,36 @@
+
+{% load static %}
+
 <html>
+<link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" />
     <head>
         <title>healhty site</title>
     </head>
-<style>
-table, th, td {
-    border: 1px solid black;
-}
-</style>
     <body>
-        <a href="{% url 'healthy:select_food'%}"> <<< Clear & Go back select menu </a> 
 
+<div class="header"><center><font size = "5" ><h1> HEALTHY </h1></center></font></div>   
+<ul><b>
+  <li><a href="{% url 'healthy:home_page'%}">Home</a></li>
+  <li><a href="{% url 'healthy:about'%}">About</a></li>
+</ul></b>
+
+<br>
+ <div class="bmr">
         <h1>bmr calculator</h1>
         <form action="{% url 'healthy:cal_bmr'%}" method="post">
         {% csrf_token %}
-         	Sex : <input type = "radio" name="sex" value = "Male"/> male
-         	<input type = "radio" name="sex" value = "Female"/> female <br>
+         	Sex : <input type = "radio" name="sex" id = "id_male" value = "Male"/> male
+         	<input type = "radio" name=" sex" id = "id_female" value = "Female"/> female <br>
          	Height(cm) : <input type = "text" name="height" /><br>
          	Weight(km) :<input type = "text" name="weight" /><br>
          	Age :<input type = "text" name="age" /><br>
-                <input type="submit" value="calculate" /><br>
+                <input class="button" type="submit" name = "submit_cal_bmr" value="calculate" /><br>
         <br>
         </form>
-
+</div> 
+<div class="link_bmr_page">
+        <a href="{% url 'healthy:select_menu_page'%}">  Go back select menu </a><br> 
+        <a href="{% url 'healthy:select_food'%}"> Clear & Go back select menu </a> 
+</div> 
     </body>
 </html>

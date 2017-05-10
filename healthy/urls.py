@@ -6,6 +6,10 @@ app_name = 'healthy'
 urlpatterns = [
 
     url(r'^$', views.home_page, name='home_page'),
+
+    url(r'^about$', views.about, name='about'),
+
+    url(r'^select_menu_page$', views.select_menu_page, name='select_menu_page'),
     
     url(r'^select_food$', views.select_food, name='select_food'),
 
