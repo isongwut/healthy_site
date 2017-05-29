@@ -1,7 +1,10 @@
 a { 
-        color: #993333;
+        font-size: 20px;
+        float: right;
+        color: #ffffff;
         text-decoration:none;
         font-weight:bold;
+        
 } 
 a.less { 
 	color: inherit; 
@@ -13,6 +16,11 @@ body {
     background-size: cover;
 }
 
+.header {
+  background: white url("images/2.jpg") no-repeat ;
+  background-size: cover;
+
+}
 
 /* menubar */
 ul {
@@ -38,7 +46,7 @@ li a {
 }
 
 li a:hover {
-    background-color: #333;
+    background-color: #ccffcc;
 }
 
 
@@ -49,23 +57,29 @@ li a:hover {
         background-size: cover;
 }
 
-
+.g {
+        margin: 20px;
+	background: #ccffcc;
+        
+}
 /* select */
 .select {
-        float: left;
         margin: 20px;
 	background: #ccffcc;
         
 }
 /* menu_select */
 .menu_select_table {
-        float: left;
         margin: 20px;
 	background: #ccffcc;
 }
+.menu_select_table_color {
+	background: #ffffff;
+}
 .goto_bmr {
+        margin: 20px;
         text-align: center;
-        float: right;
+        background: #ccffcc;
 	
 }
 
@@ -77,16 +91,13 @@ li a:hover {
 
 
 .bmr {
-        position: relative;
-        left: 400px;
         margin: 20px;
+        text-align: center;
 	background: #ccffcc;
 }
 .detail_bmr {
-        position: relative;
-        left: 400px;
-        margin: 20px;
-	background: #ccffcc;
+        left: 500px;
+
 }
 .goto_exer {
         text-align: center;
@@ -102,13 +113,15 @@ li a:hover {
 }
 /* table */
 table {
+    border-collapse: collapse;
     width: 100%;
-    border: 1px solid black;
-}
-th, td {
-    border: 1px solid black;
 }
 
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
 /* button_select_menu */
 .button_select_menu {
   display: inline-block;
@@ -147,6 +160,7 @@ th, td {
   background-color: #4CAF50;
   border: none;
   border-radius: 15px;
+  margin: 20px;
 }
 
 .button:hover {background-color: #3e8e41}

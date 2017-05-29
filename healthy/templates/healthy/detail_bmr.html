@@ -2,6 +2,7 @@
 {% load static %}
 
 <html>
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" />
     <head>
         <title>healhty site</title>
@@ -13,44 +14,117 @@ table, th, td {
 </style>
     <body>
 
-<div class="header"><center><font size = "5" ><h1> HEALTHY </h1></center></font></div>  
+<div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
+
 <ul><b>
   <li><a href="{% url 'healthy:home_page'%}">Home</a></li>
-  <li><a href="{% url 'healthy:about'%}">About</a></li>
+  <li><a href="{% url 'healthy:about'%}" id = "id_about" >About</a></li>
 </ul></b>
 
         
-<div class="bmr">
-        <h1>BMR Calculator</h1>
-        <form action="{% url 'healthy:cal_bmr'%}" method="post">
-        {% csrf_token %}
-         	Sex : <input type = "radio" name="sex" id = "id_male" value = "Male"/> male
-         	<input type = "radio" name=" sex" id = "id_female" value = "Female"/> female <br>
-         	Height(cm) : <input type = "text" name="height" /><br>
-         	Weight(km) :<input type = "text" name="weight" /><br>
-         	Age :<input type = "text" name="age" /><br>
-                <input class="button" type="submit" name = "submit_cal_bmr" value="calculate" /><br>
-        <br>
-        </form>
-</div> 
-<div class="detail_bmr">
-        <h1>BMR Detail</h1>
-        {% csrf_token %}
-         	<b>Sex : </b>{{sex}} <br>
-         	<b>Height(cm) : </b>{{height}}<br>
-         	<b>Weight(km) : </b>{{weight}} <br>
-         	<b>Age : </b>{{age}}<br>
-         	<b>BMR : </b><font color="red">{{bmr_value}}</font> kcal<br>
-                <b>Excess Calories : </b><font color="red" id = 'id_excess_calories' value = "{{excess_calories}}" >{{excess_calories}}</font> kcal
- 
-        <br><br>
-
-        <form action="{% url 'healthy:exercise' excess_calories %}" method="post">
-    	{% csrf_token %}
-                <font color = "red" size="4"><b>Select activity for exercise burn calorie >>>>> </b></font>
-                <input class="button" type="submit" name = "submit_go_select_exercise" value="Go to selected" /><br>
-	</form>
+<div class="row">
+  <div class="col-md-4"></div>
+<div class="col-md-4">
+<div class="g"><br>
+<form class="form-horizontal" action="{% url 'healthy:cal_bmr'%}" method="post">
+{% csrf_token %}
+  <h1><center>BMR Calculator</center></h1><br>  
+  <div class="form-group">
+    <label  class="col-sm-4 control-label">Sex : </label>
+    <div class="col-sm-8">
+      <input type = "radio" name="sex" id = "id_male" value = "Male"/> male<br>
+      <input type = "radio" name=" sex" id = "id_female" value = "Female"/> female <br>
+    </div>
+  </div>
+  <div class="form-group">
+    <label  class="col-sm-4 control-label">Height(cm) :</label>
+    <div class="col-sm-8">
+      <input type = "text" name="height" /><br>
+    </div>
+  </div>
+  <div class="form-group">
+    <label  class="col-sm-4 control-label">Weight(km) :</label>
+    <div class="col-sm-8">
+      <input type = "text" name="weight" /><br>
+    </div>
+  </div>
+   <div class="form-group">
+    <label  class="col-sm-4 control-label">Age :</label>
+    <div class="col-sm-8">
+      <input type = "text" name="age" /><br>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-10">
+      <input class="button" type="submit" name = "submit_cal_bmr" value="calculate" /><br>
+    </div>
+  </div><br>
+</form>
 </div>
+</div>
+<div class="col-md-4"> 
+<div class="g"><br>
+        <center><h1>BMR Detail</h1></center><br>
+   <div class="form-group">
+    <label  class="col-sm-4 control-label">Sex    : </label>
+    <div class="col-sm-8">
+      <p>{{sex}}</p>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label  class="col-sm-4 control-label">Height(cm) :</label>
+    <div class="col-sm-8">
+     <p>{{height}}</p>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label  class="col-sm-4 control-label">Weight(km) :</label>
+    <div class="col-sm-8">
+      <p>{{weight}}</p>
+    </div>
+  </div><br>
+   <div class="form-group">
+    <label  class="col-sm-4 control-label">Age    :</label>
+    <div class="col-sm-8">
+      <p>{{age}}</p>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label  class="col-sm-4 control-label">BMR : </label>
+    <div class="col-sm-8">
+      <p><font color="red">{{bmr_value}}</font> kcal</p>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label  class="col-sm-4 control-label">Excess Calorie :</label>
+    <div class="col-sm-8">
+      <p><font color="red" id = 'id_excess_calories' value = "{{excess_calories}}" >{{excess_calories}}</font> kcal</p>
+    </div>
+  </div><br>
+<br><br><br><br>
+  
+</form>
+<br>
+</div>
+</div>
+</div>
+ <form action="{% url 'healthy:exercise' excess_calories %}" method="post">
+   {% csrf_token %}
+<div class="row">
+   <div class="col-md-8"></div>
+  
+  <div class="col-md-4">
+  <div class="g"><br>
+  <font color = "red" size="4"><center><b> Select activity for exercise burn calorie  </center></b></font>
+   <div class="form-group">
+    <div class="col-sm-offset-5 col-sm-10">
+      <input class="button" type="submit" name = "submit_go_select_exercise" value="Go to selected" /><br></div>
+    </div><br><br><br>
+  </div><br>
+</div>
+</div>
+
+
 <div class="link_bmr_page">
         <a href="{% url 'healthy:select_menu_page'%}">  Go back select menu </a><br> 
         <a href="{% url 'healthy:select_food'%}"> Clear & Go back select menu </a> 

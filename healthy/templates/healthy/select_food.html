@@ -2,38 +2,69 @@
 {% load static %}
 
 <html>
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" />
     <head>
         <title>healhty site</title>
     </head>
 <body>
-<div class="header"><center><font size = "5" ><h1> HEALTHY </h1></center></font></div> 
+<div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
 <ul><b>
   <li><a href="{% url 'healthy:home_page'%}">Home</a></li>
   <li><a href="{% url 'healthy:about'%}">About</a></li>
 </ul></b>
 
-<div class="select">
-        <h1>Select food</h1>
+
+
+<div class="container-fluid">
+   <div class="row">
+     <div class="col-md-5">
+
+	<div class="select">
+         <b><font size="6"  class="menu_select_table" >Select food</font></b><br><br>        
         <form action="{% url 'healthy:select_food'%}" method="post">
     	{% csrf_token %}
+                <center>
                 <input  name='food' type='text' id = id_new_food list="food_list" placeholder="menu"/>
-		<datalist id="food_list">
+		<datalist id="food_list" >
                      {% for food in foods %}
   		 	<option value="{{food.name}}"/>
                      {% endfor %}
 		</datalist>
                  
     		 :<input type = "number" name="number_food" min="1" value= "1" /> Bowl or plate
-    		 <br><br>
-   		 <input class="button" type="submit" name="submit_select" value="select" />
+    		 <br>
+                 </center>
+    <div class="col-sm-offset-6 col-sm-10">
+      <input class="button" type="submit" name="submit_select" value="select" />
+    </div><br><br><br><br>
+   		 
 	</form>
+	</div>
+
+      </div>
+  <div class="col-md-7">
+
+	<div class="goto_bmr">       
+        <form action="{% url 'healthy:bmr'%}" method="post">
+        {% csrf_token %}
+                 <b><br>
+                <font color = "red" size="4">After the selection is complete.  </font><br>
+                <font color = "red" size="4">Calculate  bmr value for excess calories  </font><br><br></b>
+                <input class="button" type="submit" name="submit_go_bmr" value="Go to calculate" /><br>
+       
+        </form>
+	</div>
+  </div>
+
+</div>
+
 </div>
 
 
-<div class="menu_select_table">
-	<b><font size="5" >Menu table</font></b><br><br>
-	<table id="id_food_table">
+  <div class="menu_select_table">
+	<b><font size="6" class="menu_select_table">Menu table</font></b>
+	<table id="id_food_table" class="menu_select_table_color" >
             <tr>
                 <th><center>Name</th>
                 <th><center>Number(Bowl or plate)</th>
@@ -50,21 +81,14 @@
                 <th colspan="2"><center>total</th>
                 <td><center>{{calories_total}}</td></center>
             </tr>              
-        </table><br>
-        <center><a href="{% url 'healthy:select_food'%}">Clear</a></center><br>
-</div>
-   <br>  
+        </table>
+        <center><a href="{% url 'healthy:select_food'%}"><font size="4">Clear<font></a></center><br>
+  </div>
 
-<div class="goto_bmr">       
-        <form action="{% url 'healthy:bmr'%}" method="post">
-        {% csrf_token %}
-                 <b>
-                <font color = "red" size="3">After the selection is complete.  </font><br>
-                <font color = "red" size="2">Calculate  bmr value for excess calories  </font><br><br></b>
-                <input class="button" type="submit" name="submit_go_bmr" value="Go to calculate" /><br>
-        <br>
-        </form>
-</div>
+
+<br>  
+
+
 
     </body>
 </html>

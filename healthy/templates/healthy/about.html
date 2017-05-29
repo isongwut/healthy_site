@@ -2,13 +2,15 @@
 {% load static %}
 
 <html>
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" />
 <body>
 
-<div class="header"><center><font size = "5" ><h1> HEALTHY </h1></center></font></div>  
+<div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
+
 <ul><b>
   <li><a href="{% url 'healthy:home_page'%}">Home</a></li>
-  <li><a href="{% url 'healthy:about'%}">About</a></li>
+  <li><a href="{% url 'healthy:about'%}" id = "id_about" >About</a></li>
 </ul></b>
 
 <br><br>
