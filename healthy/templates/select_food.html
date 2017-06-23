@@ -1,6 +1,4 @@
-
 {% load static %}
-
 <html>
 <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" />
@@ -10,12 +8,10 @@
 <body>
 <div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
 <ul><b>
-  <li><a href="{% url 'healthy:home_page'%}">Home</a></li>
-  <li><a href="{% url 'healthy:about'%}">About</a></li>
+   <li><a href="{% url 'healthy:home_page'%}" id = "id_home" >Home</a></li>
+  <li><a href="{% url 'healthy:detail_food'%}" id = "id_Foods">Detail Foods</a></li>
+  <li><a href="{% url 'healthy:about'%}" id = "id_about" >About</a></li>
 </ul></b>
-
-
-
 <div class="container-fluid">
    <div class="row">
      <div class="col-md-5">
@@ -60,19 +56,17 @@
 </div>
 
 </div>
-
-
   <div class="menu_select_table">
 	<b><font size="6" class="menu_select_table">Menu table</font></b>
 	<table id="id_food_table" class="menu_select_table_color" >
             <tr>
-                <th><center>Name</th>
-                <th><center>Number(Bowl or plate)</th>
-                <th><center>calories(kcal)</th></center>
+                <th><center>Name (calories)</th>
+                <th><center>Number (Bowl or plate)</th>
+                <th><center>calories (kcal)</th></center>
             </tr>    
             {% for food in foodList_select %} 
             <tr>
-                <td><center>{{food.name}}</td>
+                <td><center>{{food.name}} ({{calories_per_menu}})</td>
                 <td><center>{{food.number_per_menu}}</td>
                 <td><center>{{food.calories_per_menu}}</td></center>
             </tr>   
@@ -81,14 +75,16 @@
                 <th colspan="2"><center>total</th>
                 <td><center>{{calories_total}}</td></center>
             </tr>              
-        </table>
-        <center><a href="{% url 'healthy:select_food'%}"><font size="4">Clear<font></a></center><br>
+        </table><br>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+        <center><a href="{% url 'healthy:select_food'%}"><font size="4" color = "red">...Clear... <font></a></center><br>
+  </div>
+</div>
   </div>
 
-
 <br>  
-
-
-
     </body>
 </html>

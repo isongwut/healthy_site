@@ -6,14 +6,18 @@ from healthy.models import Food,FoodList,Exercise
 
 def home_page(request):
     FoodList.objects.all().delete()
-    return render(request, 'healthy/home.html')
+    return render(request, 'home.html')
 
 def about(request):
-    return render(request, 'healthy/about.html')
+    return render(request, 'about.html')
+
+def detail_food(request):
+    contex = {'foods' : Food.objects.all()}
+    return render(request, 'detail_food.html',contex)
 
 def select_menu_page(request):
     contex = {'foods' : Food.objects.all(), 'foodList_select' : FoodList.objects.all(), 'calories_total' : sum_calories(FoodList.objects.all())}
-    return render(request, 'healthy/select_food.html', contex)
+    return render(request, 'start_select_food.html', contex)
 
 def select_food(request):
     foods = Food.objects.all()
@@ -22,7 +26,7 @@ def select_food(request):
     if request.method == 'GET':
         FoodList.objects.all().delete()
         contex = {'foods' : Food.objects.all(), 'foodList_select' : FoodList.objects.all(), 'calories_total' : sum_calories(FoodList.objects.all())}
-        return render(request, 'healthy/select_food.html', contex)
+        return render(request, 'select_food.html', contex)
 
     # select 
     select = foods.get(name = request.POST.get('food'))
@@ -34,15 +38,15 @@ def select_food(request):
     # calories total
     calories_total = sum_calories(FoodList.objects.all())
 
-    contex = {'foods' : foods, 'foodList_select' : FoodList.objects.all(), 'calories_total' : calories_total}
-    return render(request, 'healthy/select_food.html', contex)
+    contex = {'foods' : foods, 'foodList_select' : FoodList.objects.all(), 'calories_total' : calories_total, 'calories_per_menu' : select.calories}
+    return render(request, 'select_food.html', contex)
 
 def bmr(request):
-    return render(request, 'healthy/cal_bmr.html')
+    return render(request, 'cal_bmr.html')
 
 def exercise(request,excess_calories):
     contex = {'exercises' : Exercise.objects.all(),'excess_calories' : excess_calories}
-    return render(request, 'healthy/exercise.html',contex)
+    return render(request, 'exercise.html',contex)
 
 def cal_bmr(request):
     bmr = 0
@@ -69,16 +73,16 @@ def cal_bmr(request):
 
     if(excess_calories < 1):
         contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories, 'exercises' : exercises}
-        return render(request, 'healthy/detail_bmr_less.html', contex)
+        return render(request, 'detail_bmr_less.html', contex)
     else:
         contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories, 'exercises' : exercises}
-        return render(request, 'healthy/detail_bmr.html', contex)
+        return render(request, 'detail_bmr.html', contex)
 
 def burn_calories(request,excess_calories):
     exercises = Exercise.objects.all()
     select = exercises.get(pk = request.POST.get('exercise'))
     contex = { 'exercises' : exercises,'exercise_select' : select, 'excess_calories' : excess_calories}
-    return render(request, 'healthy/exercise.html', contex)
+    return render(request, 'exercise.html', contex)
 
 
 def sum_calories(foodList):

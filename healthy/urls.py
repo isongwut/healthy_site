@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^$', views.home_page, name='home_page'),
 
     url(r'^about$', views.about, name='about'),
+    
+    url(r'^detail_food$', views.detail_food, name='detail_food'),
 
     url(r'^select_menu_page$', views.select_menu_page, name='select_menu_page'),
     

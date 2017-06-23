@@ -1,0 +1,102 @@
+
+{% load static %}
+
+<html>
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" />
+    <head>
+        <title>healhty site</title>
+    </head>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+    <body>
+
+<div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
+
+<ul><b>
+  <li><a href="{% url 'healthy:home_page'%}" id = "id_home" >Home</a></li>
+  <li><a href="{% url 'healthy:detail_food'%}" id = "id_Foods">Detail Foods</a></li>
+  <li><a href="{% url 'healthy:about'%}" id = "id_about" >About</a></li>
+</ul></b>
+
+        
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4"> 
+<div class="g"><br>
+        <center><h1>BMR Detail</h1></center><br>
+<font size = "3" >
+   <div class="form-group">
+    <label  class="col-sm-5 control-label">Sex    : </label>
+    <div class="col-sm-7">
+      <p>{{sex}}</p>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label  class="col-sm-5 control-label">Height(cm) :</label>
+    <div class="col-sm-7">
+     <p>{{height}}</p>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label  class="col-sm-5 control-label">Weight(km) :</label>
+    <div class="col-sm-7">
+      <p>{{weight}}</p>
+    </div>
+  </div><br>
+   <div class="form-group">
+    <label  class="col-sm-5 control-label">Age    :</label>
+    <div class="col-sm-7">
+      <p>{{age}}</p>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label  class="col-sm-5 control-label">BMR : </label>
+    <div class="col-sm-7">
+      <p><font color="red">{{bmr_value}}</font> kcal</p>
+    </div>
+  </div><br>
+  <div class="form-group">
+    <label  class="col-sm-5 control-label">Excess Calorie :</label>
+    <div class="col-sm-7">
+      <p><font color="red" id = 'id_excess_calories' value = "{{excess_calories}}" >{{excess_calories}}</font> kcal</p>
+    </div>
+<div class="col-md-4"></div>
+  </div><br><br>
+</font>
+  
+
+<br>
+</div>
+</div>
+</div>
+ <form action="{% url 'healthy:exercise' excess_calories %}" method="post">
+   {% csrf_token %}
+<div class="row">
+   <div class="col-md-4"></div>
+  <div class="col-md-4">
+  <div class="g"><br>
+ 
+  <b><font color="red" size = "4"  ><center>Energy is not enough for you. There may be errors. Calculate bmr again or please select a new menu again . </a></font><br><br></b> </center>
+
+  </div><br>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+</form>
+
+
+<div class="link_bmr_page">
+        <a href="{% url 'healthy:select_menu_page'%}">  Go back select menu </a><br> 
+        <a href="{% url 'healthy:bmr'%}">  Go back calculator BMR </a><br> 
+        <a href="{% url 'healthy:select_food'%}"> Clear & Go back select menu </a> 
+</div> 
+
+    </body>
+</html>
+ 
+
+

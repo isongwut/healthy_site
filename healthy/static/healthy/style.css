@@ -62,6 +62,10 @@ li a:hover {
 	background: #ccffcc;
         
 }
+.nav {
+        float: right;
+        
+}
 /* select */
 .select {
         margin: 20px;
