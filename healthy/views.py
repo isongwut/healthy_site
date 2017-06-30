@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from healthy.models import Food,FoodList,Exercise
+from django.shortcuts import get_object_or_404
 
 
 def home_page(request):
@@ -20,29 +21,32 @@ def select_menu_page(request):
     return render(request, 'start_select_food.html', contex)
 
 def select_food(request):
-    foods = Food.objects.all()
     calories_total = 0
+    
     # clear
     if request.method == 'GET':
         FoodList.objects.all().delete()
         contex = {'foods' : Food.objects.all(), 'foodList_select' : FoodList.objects.all(), 'calories_total' : sum_calories(FoodList.objects.all())}
-        return render(request, 'select_food.html', contex)
+        #return render(request, 'select_food.html', contex)
+        return redirect('/select_menu_page')
 
     # select 
-    select = foods.get(name = request.POST.get('food'))
+    select = Food.objects.get(name = request.POST.get('food'))
     food_texts = select.name
     number_food = request.POST.get('number_food')
     calories = select.calories * int(number_food)
     FoodList.objects.create(name = food_texts,number_per_menu = number_food , calories_per_menu = calories)
+  
     
     # calories total
     calories_total = sum_calories(FoodList.objects.all())
-
-    contex = {'foods' : foods, 'foodList_select' : FoodList.objects.all(), 'calories_total' : calories_total, 'calories_per_menu' : select.calories}
+     
+    contex = {'foods' : Food.objects.all(), 'foodList_select' : FoodList.objects.all(), 'calories_total' : calories_total}
     return render(request, 'select_food.html', contex)
 
 def bmr(request):
     return render(request, 'cal_bmr.html')
+ 
 
 def exercise(request,excess_calories):
     contex = {'exercises' : Exercise.objects.all(),'excess_calories' : excess_calories}
@@ -72,10 +76,10 @@ def cal_bmr(request):
     excess_calories = calories_select_total-bmr
 
     if(excess_calories < 1):
-        contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories, 'exercises' : exercises}
+        contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories}
         return render(request, 'detail_bmr_less.html', contex)
     else:
-        contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories, 'exercises' : exercises}
+        contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories}
         return render(request, 'detail_bmr.html', contex)
 
 def burn_calories(request,excess_calories):

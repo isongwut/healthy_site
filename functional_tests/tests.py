@@ -35,18 +35,19 @@ class NewVisitorTest(unittest.TestCase):
         # นายประหยิด ผมเว็บเกี่ยวกับสุขภาพ
         # เขาจึงเข้าไปยัง url home page
         self.browser.get('http://localhost:8000')
-        # เขาเห็น title ของ page หน้าแรก และ header ที่เขียนว่า HEALTHY
+        # เขาเห็น title ของ page หน้าแรก และ header ที่เขียนว่า healhty site
         self.assertIn('healhty site', self.browser.title)  #5
-        header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('HEALTHY', header_text)
-        # เขาเห็น about จึงคลิกเข้าไปอ่าน
+        # เขาเห็น Detail Foods จึงคลิกเข้าไปอ่าน
         time.sleep(1)
+        self.browser.find_element_by_id("id_Foods").click()
+        # เขาเห็น about จึงคลิกเข้าไปอ่าน
+        time.sleep(2)
         self.browser.find_element_by_id("id_about").click()
         # เมื่อรับรู้แล้วเขาคลิกกลับมาหน้าแรก
-        time.sleep(1)
+        time.sleep(2)
         self.browser.find_element_by_id("id_home").click()
         # เขาพบว่าต้องกดที่ select menu
-        time.sleep(1)
+        time.sleep(2)
         self.browser.find_element_by_name("submit_select").click()
 	# เขาพบตัวเลือกให้เลือกรายชื่อของอาหาร
         time.sleep(2)

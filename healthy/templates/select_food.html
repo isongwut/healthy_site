@@ -60,13 +60,13 @@
 	<b><font size="6" class="menu_select_table">Menu table</font></b>
 	<table id="id_food_table" class="menu_select_table_color" >
             <tr>
-                <th><center>Name (calories)</th>
+                <th><center>Name</th>
                 <th><center>Number (Bowl or plate)</th>
                 <th><center>calories (kcal)</th></center>
             </tr>    
             {% for food in foodList_select %} 
             <tr>
-                <td><center>{{food.name}} ({{calories_per_menu}})</td>
+                <td><center>{{food.name}}</td>
                 <td><center>{{food.number_per_menu}}</td>
                 <td><center>{{food.calories_per_menu}}</td></center>
             </tr>   
