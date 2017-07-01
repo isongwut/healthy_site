@@ -1,4 +1,4 @@
-
+<!--call bootstrap and CSS  -->
 {% load static %}
 
 <html>
@@ -11,6 +11,7 @@
 
 <div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
 
+<!-- navigation bar  -->
 <ul><b>
   <li><a href="{% url 'healthy:home_page'%}" id = "id_home" >Home</a></li>
   <li><a href="{% url 'healthy:detail_food'%}" id = "id_Foods">Detail Foods</a></li>
@@ -18,6 +19,7 @@
 </ul></b>
 
 
+<!-- wait receive value for calculate bmr  -->
 <div class="row">
   <div class="col-md-4"></div>
 <div class="col-md-4">
@@ -63,7 +65,7 @@
 </div>
 
 
-
+<!-- link go to back select menu and clear   -->
 <div class="link_bmr_page">
         <a href="{% url 'healthy:select_menu_page'%}">  Go back select menu </a><br> 
         <a href="{% url 'healthy:select_food'%}"> Clear & Go back select menu </a> 

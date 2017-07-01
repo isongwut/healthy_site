@@ -1,6 +1,6 @@
 
+<!--call bootstrap and CSS  -->
 {% load static %}
-
 <html>
 <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'healthy/style.css' %}" /> 
@@ -11,6 +11,7 @@
 
 <div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
 
+<!-- navigation bar  -->
 <ul><b>
   <li><a href="{% url 'healthy:home_page'%}" id = "id_home" >Home</a></li>
   <li><a href="{% url 'healthy:detail_food'%}" id = "id_Foods">Detail Foods</a></li>
@@ -19,6 +20,8 @@
 
 
 <br><br>
+
+<!-- for go to select food -->
 <center>
 <img src="{% static "healthy/3.jpg" %}" alt="My image"/><br><br><br>
 

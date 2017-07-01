@@ -1,3 +1,4 @@
+<!--call bootstrap and CSS  -->
 {% load static %}
 <html>
 <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -7,11 +8,15 @@
     </head>
 <body>
 <div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
+
+<!-- navigation bar  -->
 <ul><b>
    <li><a href="{% url 'healthy:home_page'%}" id = "id_home" >Home</a></li>
   <li><a href="{% url 'healthy:detail_food'%}" id = "id_Foods">Detail Foods</a></li>
   <li><a href="{% url 'healthy:about'%}" id = "id_about" >About</a></li>
 </ul></b>
+
+<!-- fill for select menu  -->
 <div class="container-fluid">
    <div class="row">
      <div class="col-md-5">
@@ -41,6 +46,7 @@
       </div>
   <div class="col-md-7">
 
+<!-- go to calculate bmr  -->
 	<div class="goto_bmr">       
         <form action="{% url 'healthy:bmr'%}" method="post">
         {% csrf_token %}

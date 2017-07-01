@@ -2665,3 +2665,16 @@ Hit MOZ_CRASH(MsgDropped) at /build/firefox-bLMGaO/firefox-52.0.2+build1/ipc/glu
 1498797859493	Marionette	INFO	Listening on port 40521
 1498797860832	Marionette	WARN	TLS certificate errors will be ignored for this session
 1498797922758	Marionette	INFO	New connections will no longer be accepted
+1498904154351	geckodriver	INFO	Listening on 127.0.0.1:48647
+1498904155459	geckodriver::marionette	INFO	Starting browser /usr/lib/firefox/firefox.sh with args ["-marionette"]
+1498904159222	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1498904159225	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1498904159269	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1498904159270	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1498904160491	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1498904160492	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1498904160501	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1498904160503	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1498904166219	Marionette	INFO	Listening on port 41747
+1498904166809	Marionette	WARN	TLS certificate errors will be ignored for this session
+1498904220727	Marionette	INFO	New connections will no longer be accepted

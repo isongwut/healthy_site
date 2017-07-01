@@ -1,4 +1,4 @@
-
+<!--call bootstrap and CSS  -->
 {% load static %}
 
 <html>
@@ -16,13 +16,14 @@ table, th, td {
 
 <div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
 
+<!-- navigation bar  -->
 <ul><b>
   <li><a href="{% url 'healthy:home_page'%}" id = "id_home" >Home</a></li>
   <li><a href="{% url 'healthy:detail_food'%}" id = "id_Foods">Detail Foods</a></li>
   <li><a href="{% url 'healthy:about'%}" id = "id_about" >About</a></li>
 </ul></b>
 
-        
+<!-- detail BMR after calculate bmr  -->
 <div class="row">
 <div class="col-md-4"></div>
 <div class="col-md-4"> 
@@ -73,6 +74,8 @@ table, th, td {
 </div>
 </div>
 </div>
+
+<!-- go to exercise page   -->
  <form action="{% url 'healthy:exercise' excess_calories %}" method="post">
    {% csrf_token %}
 <div class="row">
@@ -90,7 +93,7 @@ table, th, td {
 </div>
 </form>
 
-
+<!-- link go to back select menu and clear and  back calculator BMR -->
 <div class="link_bmr_page">
         <a href="{% url 'healthy:select_menu_page'%}">  Go back select menu </a><br> 
         <a href="{% url 'healthy:bmr'%}">  Go back calculator BMR </a><br> 

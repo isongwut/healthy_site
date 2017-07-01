@@ -1,4 +1,4 @@
-
+<!--call bootstrap and CSS  -->
 {% load static %}
 
 <html>
@@ -16,15 +16,17 @@ table, th, td {
 
 <div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
 
+<!-- navigation bar  -->
 <ul><b>
   <li><a href="{% url 'healthy:home_page'%}" id = "id_home" >Home</a></li>
   <li><a href="{% url 'healthy:detail_food'%}" id = "id_Foods">Detail Foods</a></li>
   <li><a href="{% url 'healthy:about'%}" id = "id_about" >About</a></li>
 </ul></b>
+
+<!-- select activity for burn calories  -->
 <font size="3">
 <div class="row">
   <div class="col-md-4"></div>
-
 <div class="col-md-4">
 <div class="g"><br>
         <center><h1>Exercise burn calories</h1>
@@ -47,10 +49,9 @@ table, th, td {
 </div>
 </div>
 
-
+<!-- detail activity and time for burn calories  -->
 <div class="row">
   <div class="col-md-4"></div>
-
 <div class="col-md-4">
 <div class="g"><br>
  <div class="form-group">
@@ -80,11 +81,11 @@ table, th, td {
 <br>
 </div>
 </div>
-
 <div class="col-md-4"> 
 </div>
 </div>
 
+<!-- link go to back select menu and clear  -->
 </font>
  <div class="link_exer_page">
         <a href="{% url 'healthy:select_menu_page'%}">  Go back select menu </a><br> 

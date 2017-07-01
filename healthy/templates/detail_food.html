@@ -1,3 +1,4 @@
+<!--call bootstrap and CSS  -->
 {% load static %}
 <html>
 <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -7,10 +8,14 @@
     </head>
 <body>
 <div class="header""><center><font size = "8" > HEALTHY </center></font></div>  
+
+<!-- navigation bar  -->
 <ul><b>
   <li><a href="{% url 'healthy:home_page'%}" id = "id_home" >Home</a></li>
   <li><a href="{% url 'healthy:detail_food'%}" id = "id_Foods">Detail Foods</a></li>
   <li><a href="{% url 'healthy:about'%}" id = "id_about" >About</a></li>
+
+<!-- show all menu  -->
 </ul></b>
   <div class="menu_select_table">
 	<b><font size="6" class="menu_select_table">Menu table</font></b>
