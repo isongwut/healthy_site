@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from healthy.models import Food,FoodList,Exercise
 from django.shortcuts import get_object_or_404
+from django import forms
 
 
 def home_page(request):  		# home page
@@ -68,24 +69,30 @@ def cal_bmr(request):                   # function sum_calories for FoodList
     calories_select_total = sum_calories(FoodList.objects.all()) # calculate calories total from FoodList
 
     # cal bmr
-    sex = request.POST.get('sex')              # receive sex value from method post
-    height = int(request.POST.get('height'))   # receive height int value from method post
-    weight = int(request.POST.get('weight'))   # receive weight int value from method post
-    age = int(request.POST.get('age'))         # receive age int value from method post
-    if sex == 'Male' :                                       # case sex value = Male
-        bmr = int(66+((13.7*weight)+(5*height)-(6.8*age)))   # calculate BMR value for male
-    else:                                                    # case sex value = Female
-        bmr = int(665+((9.6*weight)+(1.8*height)-(4.7*age))) # calculate BMR value for female
+    try:
+        sex = request.POST.get('sex')              # receive sex value from method post
+        if(sex == None):        # none sex data
+            return render(request, 'cal_bmr.html',{'error_message' : 'Error : You not entered sex data'}) # render template cal_bmr show error
+        height = int(request.POST.get('height'))   # receive height int value from method post
+        weight = int(request.POST.get('weight'))   # receive weight int value from method post
+        age = int(request.POST.get('age'))         # receive age int value from method post
+    except ValueError:         # on error
+        return render(request, 'cal_bmr.html', {'error_message' : 'Error : You entered incomplete data'}) # render template cal_bmr show error
+    else:
+        if sex == 'Male' :                                       # case sex value = Male
+            bmr = int(66+((13.7*weight)+(5*height)-(6.8*age)))   # calculate BMR value for male
+        else:                                                    # case sex value = Female
+            bmr = int(665+((9.6*weight)+(1.8*height)-(4.7*age))) # calculate BMR value for female
 
-    # excess_calories
-    excess_calories = calories_select_total-bmr     # excess_calories from difference calories_select_total-bmr
+        # excess_calories
+        excess_calories = calories_select_total-bmr     # excess_calories from difference calories_select_total-bmr
 
-    if(excess_calories < 1):                                   # if excess_calories < 1
-        contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories}
-        return render(request, 'detail_bmr_less.html', contex) # render template detail_bmr_less 
-    else:                                                      # if excess_calories >= 1 
-        contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories}
-        return render(request, 'detail_bmr.html', contex)      # render template detail_bmr 
+        if(excess_calories < 1):                                   # if excess_calories < 1
+            contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories}
+            return render(request, 'detail_bmr_less.html', contex) # render template detail_bmr_less 
+        else:                                                      # if excess_calories >= 1 
+            contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories}
+            return render(request, 'detail_bmr.html', contex)      # render template detail_bmr 
 
 def exercise(request,excess_calories):              # exercise page
     contex = {'exercises' : Exercise.objects.all(),'excess_calories' : excess_calories}  # argument of send to template
