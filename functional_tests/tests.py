@@ -4,32 +4,32 @@ import unittest
 import time
 class NewVisitorTest(unittest.TestCase): 
 
-    def setUp(self): 
-        self.browser = webdriver.Firefox()
+    def setUp(self):      
+        self.browser = webdriver.Firefox()  # use browser Firefox 
 
     def tearDown(self):
-        self.browser.quit()
+        self.browser.quit()                 # quit browser
 
     def check_select_menu(self, menu,number):
         time.sleep(2)
         select = self.browser.find_element_by_id('id_new_food')
-        select.send_keys(menu)
+        select.send_keys(menu)             # put value menu
         numbox = self.browser.find_element_by_name('number_food')
         self.assertEqual(
                 numbox.get_attribute('value'),
                 number
-        )
+        )                                  # check number
         time.sleep(1)
-        self.browser.find_element_by_name("submit_select").submit()
+        self.browser.find_element_by_name("submit_select").submit() # submit selected menu
 
         time.sleep(1)    
-        self.check_for_row_in_food_table(menu)
+        self.check_for_row_in_food_table(menu) # check menu after selected
 
 
     def check_for_row_in_food_table(self, row_text):
-        table = self.browser.find_element_by_id('id_food_table')
-        rows = table.find_elements_by_tag_name('td')
-        self.assertIn(row_text, [row.text for row in rows])
+        table = self.browser.find_element_by_id('id_food_table') # querry food table
+        rows = table.find_elements_by_tag_name('td')             # querry rows
+        self.assertIn(row_text, [row.text for row in rows])      # check menu after selected 
 
     def test_can_start_a_list_and_retrieve_it_later(self):  #4
         # นายประหยิด ผมเว็บเกี่ยวกับสุขภาพ

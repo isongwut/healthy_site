@@ -30,18 +30,23 @@ def select_food(request):     # function select menu
         return redirect('/select_menu_page')    # redirect back to url /select_menu_page
 
     # select 
-    select = Food.objects.get(name = request.POST.get('food')) # Get object menu from model Food
-    food_texts = select.name                                   # name menu at select
-    number_food = request.POST.get('number_food')              # number of menu at select
-    calories = select.calories * int(number_food)              # calculate calories and number
+    try:
+        select = Food.objects.get(name = request.POST.get('food')) # Get object menu from model Food
+        number_food = request.POST.get('number_food')              # number of menu at select
+    except (KeyError, Food.DoesNotExist):                          # error not select menu
+        contex = {'foods' : Food.objects.all(), 'error_message' : 'Error : You may forget to enter the menu'}  # argument of send to template
+        return render(request, 'select_food_page.html', contex) # render template select_food_page
+    else:
+        food_texts = select.name                                   # name menu at select
+        calories = select.calories * int(number_food)              # calculate calories and number
 
-    FoodList.objects.create(name = food_texts,number_per_menu = number_food , calories_per_menu = calories) # save nemu select to model FoodList(database)
+        FoodList.objects.create(name = food_texts,number_per_menu = number_food , calories_per_menu = calories) # save nemu select to model FoodList(database)
     
-    # calories total
-    calories_total = sum_calories(FoodList.objects.all())      # calculate calories total from FoodList
+        # calories total
+        calories_total = sum_calories(FoodList.objects.all())      # calculate calories total from FoodList
      
-    contex = {'foods' : Food.objects.all(), 'foodList_select' : FoodList.objects.all(), 'calories_total' : calories_total} # argument of send to template
-    return render(request, 'select_food.html', contex)         # render template select_food for show table menu select
+        contex = {'foods' : Food.objects.all(), 'foodList_select' : FoodList.objects.all(), 'calories_total' : calories_total} # argument of send to template
+        return render(request, 'select_food.html', contex)         # render template select_food for show table menu select
 
 def sum_calories(foodList):      # function sum_calories for FoodList
     calories_total = 0       
@@ -56,17 +61,17 @@ def cal_bmr(request):                   # function sum_calories for FoodList
     bmr = 0                             # set zero BMR value each one
     calories_select_total = 0           # set zero calories_select_total for select menu
     excess_calories = 0                 # set zero excess_calories for go to calculate burn_calories
-    foods = Food.objects.all()          # All menu 
-    exercises = Exercise.objects.all()  # All exercises
+    foods = Food.objects.all()          # all menu 
+    exercises = Exercise.objects.all()  # all exercises
 
     # calories total
     calories_select_total = sum_calories(FoodList.objects.all()) # calculate calories total from FoodList
 
     # cal bmr
-    sex = request.POST.get('sex')             # receive sex value from method post
-    height = int(request.POST.get('height'))  # receive height int value from method post
-    weight = int(request.POST.get('weight'))  # receive weight int value from method post
-    age = int(request.POST.get('age'))        # receive age int value from method post
+    sex = request.POST.get('sex')              # receive sex value from method post
+    height = int(request.POST.get('height'))   # receive height int value from method post
+    weight = int(request.POST.get('weight'))   # receive weight int value from method post
+    age = int(request.POST.get('age'))         # receive age int value from method post
     if sex == 'Male' :                                       # case sex value = Male
         bmr = int(66+((13.7*weight)+(5*height)-(6.8*age)))   # calculate BMR value for male
     else:                                                    # case sex value = Female
@@ -78,7 +83,7 @@ def cal_bmr(request):                   # function sum_calories for FoodList
     if(excess_calories < 1):                                   # if excess_calories < 1
         contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories}
         return render(request, 'detail_bmr_less.html', contex) # render template detail_bmr_less 
-    else:                                                      # if excess_calories > 1 
+    else:                                                      # if excess_calories >= 1 
         contex = { 'sex' : sex,'height' : height,'weight' : weight,'age' : age,'bmr_value' : bmr, 'excess_calories' : excess_calories}
         return render(request, 'detail_bmr.html', contex)      # render template detail_bmr 
 

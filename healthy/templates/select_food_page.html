@@ -22,10 +22,11 @@
      <div class="col-md-5">
 
 	<div class="select">
-         <b><font size="6"  class="menu_select_table" >Select food</font></b><br><br>        
+         <b><font size="6"  class="menu_select_table" >Select food</font></b><br><br> 
         <form action="{% url 'healthy:select_food'%}" method="post">
     	{% csrf_token %}
                 <center>
+                {% if error_message %}<p><font color="red" size = '3'><strong>{{error_message}}</strong></font></p>{% endif %}
                 <input  name='food' type='text' id = id_new_food list="food_list" placeholder="menu"/>
 		<datalist id="food_list" >
                      {% for food in foods %}
