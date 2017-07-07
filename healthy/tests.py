@@ -114,6 +114,30 @@ class CalBMRTest(TestCase):   # Test Calculate BMR
 
         self.assertEqual(remove_csrf(response.content.decode()), remove_csrf(expected_html)) # check template and response
         self.assertEqual(response.status_code, 200)    # check return format render
+
+class Exercise_Test(TestCase):   # Test select exercise for burn_calories
+
+    def create_exercise_data_for_test(self):                # create exercise data for test 
+        activity = Exercise(types = "run", burn = 10)        
+        activity.save()                                     # save activity 
+      
+
+    def test_POST_request(self):  # test request method POST send activity to calculate burn_calories
+
+        self.create_exercise_data_for_test() # create exercise data for test
+        request = HttpRequest()
+        request.method = 'POST'   # send request method POST
+        request.POST['exercise'] = 'run' # send request method POST exercise data
+
+        response = burn_calories(request, 200)  # request go to burn_calories
+
+        exercises = Exercise.objects.all()
+        select = exercises.get(types = request.POST['exercise']) # type exercise at select
+        contex = { 'exercises' : exercises,'exercise_select' : select, 'excess_calories' : 200} # argument of send to template
+        expected_html = render_to_string('exercise.html', contex)  # render to string template exercise
+
+        self.assertEqual(remove_csrf(response.content.decode()), remove_csrf(expected_html)) # check template and response
+        self.assertEqual(response.status_code, 200)    # check return format render
         
     
 

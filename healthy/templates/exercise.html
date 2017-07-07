@@ -36,7 +36,7 @@ table, th, td {
     		<select name='exercise' id = id_exercise>
                 	<option selected disabled>Select here</option>
                     {% for exercise in exercises %}
-  			<option value='{{exercise.id}}'>{{exercise.types}}</option>
+  			<option value='{{exercise.types}}'>{{exercise.types}}</option>
                     {% endfor %}
 		 </select>
     	 	 <input class="button" type="submit" name = "submit_select_exercise" value="select" />

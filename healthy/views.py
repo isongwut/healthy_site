@@ -100,9 +100,8 @@ def exercise(request,excess_calories):              # exercise page
 
 
 def burn_calories(request,excess_calories):         # function burn_calories for check type exercise at select        
-    exercises = Exercise.objects.all()              # all exercises
-    select = exercises.get(pk = request.POST.get('exercise')) # type exercise at select
-    contex = { 'exercises' : exercises,'exercise_select' : select, 'excess_calories' : excess_calories} # argument of send to template
+    select = Exercise.objects.get(types = request.POST.get('exercise')) # type exercise at select
+    contex = { 'exercises' : Exercise.objects.all(),'exercise_select' : select, 'excess_calories' : excess_calories} # argument of send to template
     return render(request, 'exercise.html', contex) # render template exercise
 
 
