@@ -31,8 +31,8 @@ class NewVisitorTest(unittest.TestCase):
         rows = table.find_elements_by_tag_name('td')             # querry rows
         self.assertIn(row_text, [row.text for row in rows])      # check menu after selected 
 
-    def test_can_start_a_list_and_retrieve_it_later(self):  #4
-        # นายประหยิด ผมเว็บเกี่ยวกับสุขภาพ
+    def test_select_food_and_cal_bmr_and_select_activity(self):  #4
+        # นายประหยิด พบเว็บเกี่ยวกับสุขภาพ
         # เขาจึงเข้าไปยัง url home page
         self.browser.get('http://localhost:8000')
         # เขาเห็น title ของ page หน้าแรก และ header ที่เขียนว่า healhty site
