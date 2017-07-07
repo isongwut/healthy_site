@@ -26,6 +26,12 @@ class HomePageTest(TestCase):   # test home page
 
 class SelectMenuTest(TestCase): # test Select Menu
 
+    def create_food_data_for_test(self):                # create food data for test 
+        food = Food(name = "ข้าวผัด", calories = 557)        # first menu 
+        food.save()
+        food = Food(name = "ขนมปังสังขยา", calories = 230)  # second menu
+        food.save()
+
     def test_root_url_resolves_to_select_page_view(self): # test root url in system
         found = resolve('/select_food')  
         self.assertEqual(found.func, select_food)
@@ -44,9 +50,28 @@ class SelectMenuTest(TestCase): # test Select Menu
         self.assertEqual(total_menu[0].number_per_menu, 1)      # check number_per_menu first menu = 1
         self.assertEqual(total_menu[0].calories_per_menu, 557)  # check calories_per_menu first menu = 557
 
-        self.assertEqual(total_menu[1].name, 'ขนมปังสังขยา')    # check name first menu = ขนมปังสังขยา
-        self.assertEqual(total_menu[1].number_per_menu, 2)      # check number_per_menu first menu = 2
-        self.assertEqual(total_menu[1].calories_per_menu, 460)  # check calories_per_menu first menu = 460
+        self.assertEqual(total_menu[1].name, 'ขนมปังสังขยา')    # check name second menu = ขนมปังสังขยา
+        self.assertEqual(total_menu[1].number_per_menu, 2)      # check number_per_menu second menu = 2
+        self.assertEqual(total_menu[1].calories_per_menu, 460)  # check calories_per_menu second menu = 460
+
+
+    def test_saving_and_retrieving_items_POST_request(self):    # test saving and retrieving items POST request
+
+        self.create_food_data_for_test() # create food data for test
+        request = HttpRequest()
+        request.method = 'POST'   # send request method GET
+        request.POST['food'] = 'ข้าวผัด'  # send request method POST name food data
+        request.POST['number_food'] = 1  # send request method POST number food data
+
+        response = select_food(request)  # request go to select_food
+
+        selected_food = FoodList.objects.all()           # call total selected menu to variable
+        self.assertEqual(selected_food.count(), 1)       # check total selected menu = 1
+
+        self.assertEqual(selected_food[0].name, 'ข้าวผัด')          # check name first menu = ข้าวผัด
+        self.assertEqual(selected_food[0].number_per_menu, 1)      # check number_per_menu first menu = 1
+        self.assertEqual(selected_food[0].calories_per_menu, 557)  # check calories_per_menu first menu = 557
+        
 
     def test_clear_items_after_GET(self):             # test clear items after GET
         first_menu = FoodList(name = 'ข้าวผัด',number_per_menu = 1,calories_per_menu = 557) # assign first menu
